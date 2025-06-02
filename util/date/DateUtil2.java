@@ -1,9 +1,9 @@
-package util;
+package util.date;
 
 import java.time.LocalDateTime; // LocalDateTime : 날짜와 시간을 다루는 클래스
 import java.time.format.DateTimeFormatter; //DateTimeFormatter 
 
-public class DateUtil {
+public class DateUtil2 {
     // 정적 메서드 추가, 현재 날짜와 시간
     // 형식을 2025년 05월 30일 오후 4시 35분 , 이런 형식의 데이터를
     // 문자열 형태로 반환 하는 메소드 만들기

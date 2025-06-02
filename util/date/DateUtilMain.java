@@ -1,4 +1,4 @@
-package util;
+package util.date;
 
 public class DateUtilMain {
     public static void main(String[] args) {

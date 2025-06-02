@@ -2,8 +2,8 @@ package util_test;
 
 import java.util.Scanner;
 
-import util.LoginService;
-import util.UserService;
+import util.user.LoginService;
+import util.user.UserService;
 
 public class H2 {
     public static void main(String[] args) {

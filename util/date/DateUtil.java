@@ -1,4 +1,4 @@
-package util;
+package util.date;
 
 import java.time.LocalDateTime; // LocalDateTime : 날짜와 시간을 다루는 클래스
 import java.time.format.DateTimeFormatter; //DateTimeFormatter 
