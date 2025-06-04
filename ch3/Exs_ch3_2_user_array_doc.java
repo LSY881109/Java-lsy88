@@ -9,7 +9,10 @@ public class Exs_ch3_2_user_array_doc {
     // 퀴즈,
     // 아래 코드를 이용해서,
     // 도서 관리 프로그램을 만들기,
-    // +@ : 검색 기능 넣기
+    // + @ : 검색 기능 넣기
+    // 도서 정보 1) 도서명, 2) 저자, 3) 출판사, 4) 등록일로 구성,
+    // 도서 정보 CRUD , 추가, 조회, 수정, 삭제 기능, 검색까지 구현.
+    // 검사 확인시, 기능 구현 다 보여주고, 각 메서드 기능에 대해서 질문 할 예정.
 
     // 회원 관리 프로그램 버전2, 저장소: 임시 메모리(배열) 이용할 예정.
     // 배열 주의 사항) 1) 고정 길이 , 2) 크기 변경 불가, 3) 같은 타입 사용.
@@ -18,15 +21,47 @@ public class Exs_ch3_2_user_array_doc {
 
     static final int MAX_USERS = 100; // 최대 회원 수
     // 이름, 이메일, 패스워드, 등록일을 저장할 배열 선언
+    // 예시) 1명이 회원 가입 하게 되면, 이상용, lsy@naver.com , 1234, 2025-06-04
+    // 배열은 순서, 인덱스 표현하고, 0부터 시작함.
+    // names 배열 : ["이상용"] -> names[0] = "이상용"
+    // emails 배열 : ["lsy@naver.com"] -> emails[0] = "lsy@naver.com"
+    // passwords 배열 : ["1234"] -> passwords[0] = "1234"
+    // registrationDates 배열 : ["2025-06-04 12:00:00"] -> registrationDates[0] =
+    // "2025-06-04 12:00:00"
+
+    // 예시2) 1명 회원 더 추가시, 홍길동 , hong@naver.com, 1234, 2025-06-04
+    // names 배열 : ["이상용", "홍길동"] -> names[1] = "홍길동"
+    // emails 배열 : ["lsy@naver.com", "hong@naver.com"] -> emails[1] =
+    // "hong@naver.com"
+    // passwords 배열 : ["1234", "1234"] -> passwords[1] = "1234"
+    // registrationDates 배열 : ["2025-06-04 12:00:00", "2025-06-04 12:00:00"] ->
+    // registrationDates[1] = "2025-06-04 12:00:00"
+
+    // 예시3) 1명 회원 더 추가시, 김철수 , kim1111@naver.com , 1234, 2025-06-04
+    // names 배열 : ["이상용", "홍길동", "김철수"] -> names[2] = "김철수"
+    // emails 배열 : ["lsy@naver.com", "hong@naver.com", "kim1111@naver.com"] ->
+    // emails[2] = "kim1111@naver.com"
+    // passwords 배열 : ["1234", "1234", "1234"] -> passwords[2] = "1234"
+    // registrationDates 배열 : ["2025-06-04 12:00:00", "2025-06-04 12:00:00",
+    // "2025-06-04 12:00:00"] -> registrationDates[2] = "2025-06-04 12:00:00"
+
+    // 결론, 배열은 임시 메모리 저장소이고, 각 배열의 모양
+    // names[0] = "이상용", names[1] = "홍길동", names[2] = "김철수" 처럼,
+    // emails[0] = "", emails[1] = "", emails[2] = "" 처럼,
+    // passwords[0] = "", passwords[1] = "", passwords[2] = "" 처럼,
+    // registrationDates[0] = "", registrationDates[1] = "", registrationDates[2] =
+    // "" 처럼,
+    // MAX_USERS = 100 이므로, 인덱스 : 0 ~ 99 까지 사용 가능.
     static String[] names = new String[MAX_USERS];
     static String[] emails = new String[MAX_USERS];
     static String[] passwords = new String[MAX_USERS];
     static String[] registrationDates = new String[MAX_USERS];
+    // 상태 변수,
     static int userCount = 0; // 현재 등록된 회원 수
 
     // 회원 추가 메서드
     public static void addUser(Scanner scanner) {
-        if (userCount < MAX_USERS) {
+        if (userCount < MAX_USERS) { // 기본 유효성 체크
             System.out.println("이름을 입력하세요: ");
             String name = scanner.nextLine();
             names[userCount] = name; // 이름 저장
@@ -55,7 +90,7 @@ public class Exs_ch3_2_user_array_doc {
     public static void viewUsers() {
         if (userCount == 0) {
             System.out.println("등록된 회원이 없습니다.");
-            return;
+            return; // 등록된 회원이 없을 때, 조회 기능 종료, 메서드(함수)를 나가기
         }
         System.out.println("등록된 회원 목록:");
         for (int i = 0; i < userCount; i++) {
@@ -143,5 +178,29 @@ public class Exs_ch3_2_user_array_doc {
         System.out.println("더미 회원 5명이 추가되었습니다.");
     }
     // 회원 더미 데이터 5개 추가하는 메서드
+
+    // 검색 기능
+    // 회원 목록에서 이름 또는 이메일로 검색하는 기능을 추가할 수 있습니다.
+    public static void searchUser(Scanner scanner) {
+        System.out.println("검색할 회원의 이름 또는 이메일을 입력하세요: ");
+        String searchQuery = scanner.nextLine();
+        boolean found = false;
+
+        for (int i = 0; i < userCount; i++) {
+            // 배열.contins() 메서드를 사용하여 검색어가 이름 또는 이메일에 포함되어 있는지 확인
+            // contains() 메서드는 문자열에 특정 문자열이 포함되어 있는지 확인하는 메서드입니다.
+            // 예시) names[i].contains(searchQuery) -> names[0] = "이상용" , searchQuery = "이상용"
+            if (names[i].contains(searchQuery) || emails[i].contains(searchQuery)) {
+                System.out.println("검색 결과: " + (i + 1) + ". " + names[i] + ", " + emails[i] + ", "
+                        + registrationDates[i]);
+                found = true;
+            }
+        }
+
+        if (!found) { // 검색 결과가 있을 경우, 실행이 안됨, found = true; -> false;
+            System.out.println("검색 결과가 없습니다.");
+        }
+    }
+    // 검색 기능
 
 }

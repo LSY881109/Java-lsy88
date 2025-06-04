@@ -3,6 +3,96 @@ package ch3;
 import java.util.Scanner;
 
 public class Exs_ch3 {
+
+    // 기본 배열 생성, 조회, 반복문 출력, 배열 타입으로 리턴,
+    public static void ex3_8() {
+        // 기본 1차원 배열 생성.
+        int[] numbers = new int[5]; // 크기 5인 정수형 배열 생성
+        // 배열에 값 할당
+        int[] numbers2 = { 1, 2, 3, 4, 5 }; // 배열 선언과 동시에 값 할당
+        // 첫번째, 각 요소의 값을 하나씩 접근 하는 방법,
+        // numbers2 의 인덱스 3 을 조회,
+        int value = numbers2[3]; // 인덱스 3의 값 조회
+        System.out.println("numbers2[3]의 값은: " + value); // 4 출력
+
+        // 두번째, 향상된 for 문 이용해서, 배열의 각 요소를 출력하는 방법
+        for (int number : numbers2) {
+            System.out.println(number + " "); // 1 2 3 4 5 출력
+        }
+    }
+
+    // int[] : 리턴 타입 정수를 요소로 가지는 배열 타입.
+    // ex3_8_return : 메서드 이름 .
+    public static int[] ex3_8_return() {
+        // 배열을 리턴하는 예시
+        int[] numbers = { 1, 2, 3, 4, 5 }; // 배열 선언과 동시에 값 할당
+        return numbers; // 배열 리턴
+    }
+
+    public static void ex3_7(Scanner scanner) {
+        // ex3-7, 퀴즈, 양수 5개 받아서 배열 저장 후, 제일 큰 수 구하는 메소드 작성하기.
+        // 디버깅 하는 방법 에 대해서 이야기하기.
+        // 디버깅 모드에서, 각 단계로 들어가기, 다음 단계 등으로 실행 하면서
+        // 각 단계별 변수의 값 비교 및 확인.
+
+        // 확인시, 디버깅(검사), 순서도로 확인 해보기.
+        int[] intArray; // 정수형 배열 선언 만 하기.
+        intArray = new int[5]; // 크기 5인 정수형 배열 생성
+        int max = 0; // 현재 가장 큰 수, 상태 변수,
+        System.out.println("양수 5개를 입력하세요.");
+        for (int i = 0; i < 5; i++) {
+            // intArray = [1,2,3,4,5]; // 예시로 5개 입력 받음.
+            intArray[i] = scanner.nextInt();
+            // 입력 받은 정수를 배열에 저장
+            if (intArray[i] > max)
+                max = intArray[i]; // max 변경
+        }
+        System.out.print("가장 큰 수는 " + max + "입니다.");
+    }
+
+    // 회원 추가 관련프로그램 UI 그리는 메소드
+    public static void ex_user_ui(Scanner scanner) {
+        // Ex3-6-4, 배열을 이용한 회원 관리 프로그램 예시
+        int menu;
+        do {
+            System.out.println("회원 관리 프로그램 예시");
+            System.out.println("=================================================================");
+            System.out.println("1. 회원 추가 , 2. 회원 조회, 3. 회원 수정, 4. 회원 삭제, 5.더미 데이터 추가 5개, 6. 검색기능,  0. 종료");
+            System.out.println("=================================================================");
+            System.out.print("메뉴를 선택하세요(0 ~ 6): ");
+            menu = scanner.nextInt();
+            scanner.nextLine(); // 개행 문자 제거
+            switch (menu) {
+                case 1:
+                    Exs_ch3_2_user_array_doc.addUser(scanner); // 회원 추가
+                    break;
+                case 2:
+                    Exs_ch3_2_user_array_doc.viewUsers(); // 회원 조회
+                    break;
+                case 3:
+                    Exs_ch3_2_user_array_doc.updateUser(scanner); // 회원 수정
+                    break;
+                case 4:
+                    Exs_ch3_2_user_array_doc.deleteUser(scanner); // 회원 삭제
+                    break;
+                case 5:
+                    Exs_ch3_2_user_array_doc.addDummyUsers(); // 더미 데이터 추가
+                    System.out.println("더미 데이터 5개가 추가되었습니다.");
+                    break;
+                case 6:
+                    Exs_ch3_2_user_array_doc.searchUser(scanner); // 회원 검색
+                    System.out.println("회원 검색 기능이 실행되었습니다.");
+                    break;
+                case 0:
+                    System.out.println("프로그램을 종료합니다.");
+                    break;
+                default:
+                    System.out.println("잘못된 메뉴 선택입니다. 다시 시도하세요.");
+            }
+
+        } while (menu != 0); // 메뉴가 0이 아닐 때까지 반복
+    }
+
     // ex3--6-3, 이중 배열 예시
     public static void ex3_6_3() {
         // 기본 문법

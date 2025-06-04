@@ -11,7 +11,7 @@ public class BookManager {
     static String[] registrationDates = new String[MAX_BOOKS];
     static int bookCount = 0;
 
-    // 1. 도서 추가
+    // 도서 추가
     public static void addBook(Scanner scanner) {
         if (bookCount >= MAX_BOOKS) {
             System.out.println("최대 도서 수를 초과했습니다.");
@@ -33,20 +33,21 @@ public class BookManager {
         bookCount++;
     }
 
-    // 2. 도서 목록 조회
+    // 도서 목록 조회
     public static void viewBooks() {
         if (bookCount == 0) {
             System.out.println("등록된 도서가 없습니다.");
             return;
         }
 
+        System.out.println("\n📚 현재 등록된 도서 목록:");
         for (int i = 0; i < bookCount; i++) {
             System.out.println(
                     "[" + i + "] " + titles[i] + " / " + authors[i] + " / " + isbns[i] + " / " + registrationDates[i]);
         }
     }
 
-    // 3. 도서 수정
+    // 도서 수정
     public static void updateBook(Scanner scanner) {
         System.out.print("수정할 도서 인덱스 입력 (0 ~ " + (bookCount - 1) + "): ");
         int index = scanner.nextInt();
@@ -70,11 +71,11 @@ public class BookManager {
         System.out.println("도서 정보가 수정되었습니다.");
     }
 
-    // 4. 도서 삭제
+    // 도서 삭제
     public static void deleteBook(Scanner scanner) {
         System.out.print("삭제할 도서 인덱스 입력 (0 ~ " + (bookCount - 1) + "): ");
         int index = scanner.nextInt();
-        scanner.nextLine(); // 개행 문자 제거
+        scanner.nextLine();
 
         if (index < 0 || index >= bookCount) {
             System.out.println("잘못된 인덱스입니다.");
@@ -88,13 +89,18 @@ public class BookManager {
             registrationDates[i] = registrationDates[i + 1];
         }
 
+        titles[bookCount - 1] = null;
+        authors[bookCount - 1] = null;
+        isbns[bookCount - 1] = null;
+        registrationDates[bookCount - 1] = null;
+
         bookCount--;
         System.out.println("도서가 삭제되었습니다.");
     }
 
-    // 5. 도서 검색 (제목으로)
+    // 도서 검색 (제목 기준)
     public static void searchBookByTitle(Scanner scanner) {
-        System.out.print("검색할 도서 제목 입력: ");
+        System.out.print("검색할 도서 제목 키워드 입력: ");
         String keyword = scanner.nextLine();
         boolean found = false;
 
@@ -109,5 +115,19 @@ public class BookManager {
         if (!found) {
             System.out.println("해당 제목의 도서를 찾을 수 없습니다.");
         }
+    }
+
+    // 더미 도서 추가
+    public static void addDummyBooks() {
+        for (int i = 0; i < 5; i++) {
+            if (bookCount < MAX_BOOKS) {
+                titles[bookCount] = "더미도서" + (i + 1);
+                authors[bookCount] = "저자" + (i + 1);
+                isbns[bookCount] = "ISBN0000" + (i + 1);
+                registrationDates[bookCount] = DateUtil.getCurrentDateTime();
+                bookCount++;
+            }
+        }
+        System.out.println("더미 도서 5권이 추가되었습니다.");
     }
 }

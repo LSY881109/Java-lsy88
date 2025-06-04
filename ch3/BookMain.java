@@ -7,8 +7,11 @@ public class BookMain {
         Scanner scanner = new Scanner(System.in);
         int menu;
 
+        System.out.println("📚 도서 관리 프로그램에 오신 것을 환영합니다!");
+        BookManager.addDummyBooks(); // 더미 데이터 추가
+
         do {
-            System.out.println("\n📚 도서 관리 프로그램");
+            System.out.println("\n===== 메뉴 =====");
             System.out.println("1. 도서 추가");
             System.out.println("2. 도서 목록 조회");
             System.out.println("3. 도서 정보 수정");
@@ -25,8 +28,8 @@ public class BookMain {
                 case 3 -> BookManager.updateBook(scanner);
                 case 4 -> BookManager.deleteBook(scanner);
                 case 5 -> BookManager.searchBookByTitle(scanner);
-                case 0 -> System.out.println("프로그램 종료.");
-                default -> System.out.println("올바른 메뉴 번호를 선택하세요.");
+                case 0 -> System.out.println("📕 프로그램을 종료합니다.");
+                default -> System.out.println("❗ 올바른 메뉴 번호를 선택하세요.");
             }
 
         } while (menu != 0);
