@@ -5,72 +5,23 @@ import java.util.Scanner;
 import util.date.*;
 import util.model.Member;
 
-public class Exs_ch3_2_user_array_doc {
+public class Exs_ch3_2_user_array_ver2 {
 
-    // 퀴즈,
-    // 아래 코드를 이용해서,
-    // 도서 관리 프로그램을 만들기,
-    // + @ : 검색 기능 넣기
-    // 도서 정보 1) 도서명, 2) 저자, 3) 출판사, 4) 등록일로 구성,
-    // 도서 정보 CRUD , 추가, 조회, 수정, 삭제 기능, 검색까지 구현.
-    // 검사 확인시, 기능 구현 다 보여주고, 각 메서드 기능에 대해서 질문 할 예정.
-
-    // 회원 관리 프로그램 버전2, 저장소: 임시 메모리(배열) 이용할 예정.
-    // 배열 주의 사항) 1) 고정 길이 , 2) 크기 변경 불가, 3) 같은 타입 사용.
-    // 조건), 1) 회원 수는 100명 이하, 2) 회원 정보는 이름, 이메일, 패스워드, 등록일로 구성.
-    // 회원 정보 CRUD , 추가, 조회, 수정, 삭제 기능 구현.
+    // 퀴즈
+    // 폴더 만들기 -homework
+    // homework 폴더 안에,-> 0605 폴더 ->
+    // ch4 폴더 -> 기능 클래스 만들기, 실행 클래스 만들기, 모델 클래스 만들기.
+    // 자동차 관리 프로그램 만들기,
+    // 자동차 정보 1) 자동차명, 2) 제조사, 3) 연식, 4) 등록일로 구성,
+    // 메서드 : showInfo() 메서드 만들기,
+    // 자동차 정보 CRUD , 추가, 조회, 수정, 삭제 기능 , 검색, 더미데이터 추가 구현.
+    // 최대한 강사 코드 재사용해서 복습하기.
 
     static final int MAX_USERS = 100; // 최대 회원 수
-    // 이름, 이메일, 패스워드, 등록일을 저장할 배열 선언
-    // 예시) 1명이 회원 가입 하게 되면, 이상용, lsy@naver.com , 1234, 2025-06-04
-    // 배열은 순서, 인덱스 표현하고, 0부터 시작함.
-    // names 배열 : ["이상용"] -> names[0] = "이상용"
-    // emails 배열 : ["lsy@naver.com"] -> emails[0] = "lsy@naver.com"
-    // passwords 배열 : ["1234"] -> passwords[0] = "1234"
-    // registrationDates 배열 : ["2025-06-04 12:00:00"] -> registrationDates[0] =
-    // "2025-06-04 12:00:00"
-
-    // 예시2) 1명 회원 더 추가시, 홍길동 , hong@naver.com, 1234, 2025-06-04
-    // names 배열 : ["이상용", "홍길동"] -> names[1] = "홍길동"
-    // emails 배열 : ["lsy@naver.com", "hong@naver.com"] -> emails[1] =
-    // "hong@naver.com"
-    // passwords 배열 : ["1234", "1234"] -> passwords[1] = "1234"
-    // registrationDates 배열 : ["2025-06-04 12:00:00", "2025-06-04 12:00:00"] ->
-    // registrationDates[1] = "2025-06-04 12:00:00"
-
-    // 예시3) 1명 회원 더 추가시, 김철수 , kim1111@naver.com , 1234, 2025-06-04
-    // names 배열 : ["이상용", "홍길동", "김철수"] -> names[2] = "김철수"
-    // emails 배열 : ["lsy@naver.com", "hong@naver.com", "kim1111@naver.com"] ->
-    // emails[2] = "kim1111@naver.com"
-    // passwords 배열 : ["1234", "1234", "1234"] -> passwords[2] = "1234"
-    // registrationDates 배열 : ["2025-06-04 12:00:00", "2025-06-04 12:00:00",
-    // "2025-06-04 12:00:00"] -> registrationDates[2] = "2025-06-04 12:00:00"
-
-    // 결론, 배열은 임시 메모리 저장소이고, 각 배열의 모양
-    // names[0] = "이상용", names[1] = "홍길동", names[2] = "김철수" 처럼,
-    // emails[0] = "", emails[1] = "", emails[2] = "" 처럼,
-    // passwords[0] = "", passwords[1] = "", passwords[2] = "" 처럼,
-    // registrationDates[0] = "", registrationDates[1] = "", registrationDates[2] =
-    // "" 처럼,
-    // MAX_USERS = 100 이므로, 인덱스 : 0 ~ 99 까지 사용 가능.
-    static String[] names = new String[MAX_USERS];
-    static String[] emails = new String[MAX_USERS];
-    static String[] passwords = new String[MAX_USERS];
-    static String[] registrationDates = new String[MAX_USERS];
 
     // Member 클래스를 담아 둘 배열 생성. 크기는 동일하게 100명으로 정하기.
     static Member[] members = new Member[MAX_USERS];
-    // members 의 모양 : members = {member1, member2, member3, ...}
 
-    // 추가작업-1,개요
-    // 클래스 타입으로 데이터를 모아놓고,
-    // 배열에 폰 클래스 타입으로 담는 작업? 퀴즈로 했음.
-    // 0) 콘솔에서 입력 받은 정보들을 클래스에 담기.
-    // 1) 회원 정보를 담아 둘 클래스를 정의, Member 클래스 만들기.
-    // 1)-2 , 멤버 : 이름, 이메일, 패스워드, 등록일 , 기능 : 각 정보를 보여주는 기능.
-    // 2) 회원 클래스를 담아 둘 배열를 생성하기.
-
-    // 상태 변수,
     static int userCount = 0; // 현재 등록된 회원 수
 
     // 회원 추가 메서드
@@ -88,13 +39,8 @@ public class Exs_ch3_2_user_array_doc {
             // 현재 날짜와 시간 저장
             String registrationDate = DateUtil.getCurrentDateTime();
 
-            // public Member(String name, String password, String email, String regDate) {
             // 사용자들로 부터 입력 받은 정보를, 모델 클래스의 인스턴스 생성 하는 곳에 사용.
             Member member = new Member(name, password, email, registrationDate);
-
-            // 배열의 단점, 인덱스의 위치 조정 자동으로 안해줌.
-            // 앞에 삭제시, 삭제후 인덱스 이동을 수동을 했음. 그래서,
-            // 지금 배열의 불편한 부분을 감수하고, -> 배열의 업그레이드 버전 -> arrayList 등으로 해결.
 
             members[userCount] = member;
             // 회원 수 증가
@@ -113,9 +59,6 @@ public class Exs_ch3_2_user_array_doc {
         }
         System.out.println("등록된 회원 목록:");
         for (int i = 0; i < userCount; i++) {
-            // System.out.println("인덱스 번호 : " + i + ", " + (i + 1) + ". " + names[i] + ", "
-            // + emails[i] + ", "
-            // + registrationDates[i]);
             members[i].showInfo();
         }
     } // 회원 조회 메서드
@@ -174,30 +117,9 @@ public class Exs_ch3_2_user_array_doc {
         System.out.println("삭제할 회원 정보: ");
         member.showInfo(); // 회원 정보 출력
 
-        // 삭제 하는 형식, 기존에는 4개의 배열에 , 해당 인덱스 값에 각각 null 4번 입력 했다면,
-        // members 배열에 하나의 값에만 null 입력.
-        members[index] = null; // 해당 인덱스의 회원 정보 삭제
-        // 0 1 2 3 4
-        // members 의 모양 : members = {member1, member2, member3, member4, member5 ...}
-        // 삭제 시뮬레이션
-        // 0 1삭제 2 3 4
-        // members 의 모양 : members = {member1, member2 삭제, member3, member4, member5 ...}
-        // 0 1 2 3 4
-        // members 의 모양 : members = {member1, 비워짐, member3, member4, member5 ...}
-        // 해당 인덱스의 회원 정보를 삭제하고, 뒤에 있는 회원 정보를 앞으로 이동
         for (int i = index; i < userCount - 1; i++) {
-            // 예시, 인덱스 1번 삭제, userCount = 5, 범위 1 이상 4 미만
-            // names[i] = names[i + 1];
-            // emails[i] = emails[i + 1];
-            // passwords[i] = passwords[i + 1];
-            // registrationDates[i] = registrationDates[i + 1];
             members[i] = members[i + 1]; // 다음 인덱스의 회원 정보를 현재 인덱스로 이동
         }
-        // 마지막 회원 정보는 null로 설정
-        // names[userCount - 1] = null;
-        // emails[userCount - 1] = null;
-        // passwords[userCount - 1] = null;
-        // registrationDates[userCount - 1] = null;
         // 마지막 인덱스의 회원 정보는 null로 설정
         members[userCount - 1] = null; // 마지막 인덱스의 회원 정보 삭제
 
@@ -211,11 +133,7 @@ public class Exs_ch3_2_user_array_doc {
     public static void addDummyUsers() {
         for (int i = 0; i < 5; i++) {
             if (userCount < MAX_USERS) {
-                // names[userCount] = "더미회원" + (i + 1);
-                // emails[userCount] = "dummy" + (i + 1) + "@example.com";
-                // passwords[userCount] = "password" + (i + 1);
-                // registrationDates[userCount] = DateUtil.getCurrentDateTime();
-                // Member 클래스를 이용해서, 더미 회원 정보 생성
+
                 // 방법1, 객체를 따로 생성 후 배열에 추가
                 Member dummyMember = new Member(
                         "더미회원" + (i + 1),
@@ -225,12 +143,6 @@ public class Exs_ch3_2_user_array_doc {
                 // members 배열에 더미 회원 정보 추가
                 members[userCount] = dummyMember;
 
-                // 방법2, 한번에 바로 넣기
-                // members[userCount] = new Member(
-                // "더미회원" + (i + 1),
-                // "password" + (i + 1),
-                // "dummy" + (i + 1) + "@example.com",
-                // DateUtil.getCurrentDateTime());
                 userCount++;
             } else {
                 System.out.println("더미 회원 추가 실패: 최대 회원 수 초과");
@@ -249,15 +161,6 @@ public class Exs_ch3_2_user_array_doc {
         boolean found = false;
 
         for (int i = 0; i < userCount; i++) {
-            // 배열.contins() 메서드를 사용하여 검색어가 이름 또는 이메일에 포함되어 있는지 확인
-            // contains() 메서드는 문자열에 특정 문자열이 포함되어 있는지 확인하는 메서드입니다.
-            // 예시) names[i].contains(searchQuery) -> names[0] = "이상용" , searchQuery = "이상용"
-            // if (names[i].contains(searchQuery) || emails[i].contains(searchQuery)) {
-            // System.out.println("검색 결과: " + (i + 1) + ". " + names[i] + ", " + emails[i] +
-            // ", "
-            // + registrationDates[i]);
-            // found = true;
-            // }
             // 변경, Member , getName(), getEmail() 메서드 사용, 이용해서 검색 기능 구현하기.
             if (members[i].getName().contains(searchQuery) || members[i].getEmail().contains(searchQuery)) {
                 // System.out.println("검색 결과: " + (i + 1) + ". " + names[i] + ", " + emails[i] +
