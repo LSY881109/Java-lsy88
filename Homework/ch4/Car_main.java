@@ -9,9 +9,11 @@
 // 자동차 정보 CRUD , 추가, 조회, 수정, 삭제 기능 , 검색, 더미데이터 추가 구현.
 // 최대한 강사 코드 재사용해서 복습하기.
 
-package Homework.lsy0605.ch4; // 이 파일이 속한 폴더(패키지)를 정의
+package Homework.ch4; // 이 파일이 속한 폴더(패키지)를 정의
 
 import java.util.Scanner; // 사용자로부터 키보드 입력을 받기 위해 Scanner를 사용
+
+import Homework.ch4.Car;
 
 public class Car_main { // 프로그램을 실행하는 메인 클래스
 

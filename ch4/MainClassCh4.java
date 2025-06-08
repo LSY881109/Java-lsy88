@@ -1,5 +1,7 @@
 package ch4;
 
+import ch4.Car;
+
 public class MainClassCh4 {
     // 실행 하는 클래스
     public static void main(String[] args) {

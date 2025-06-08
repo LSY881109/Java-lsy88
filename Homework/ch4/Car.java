@@ -1,4 +1,4 @@
-package Homework.lsy0605.ch4; // 이 파일이 속한 폴더(패키지) 위치
+package Homework.ch4; // 이 파일이 속한 폴더(패키지) 위치
 
 import java.util.Scanner; // 사용자로부터 키보드 입력을 받기 위해 Scanner를 사용
 import util.date.DateUtil; // 날짜와 시간을 가져오는 유틸리티 클래스 (직접 만든 클래스일 가능성이 커요)
@@ -7,13 +7,19 @@ public class Car { // Car 클래스
 
    static final int MAX_USERS = 100; // 최대 자동차 등록 수를 100대
 
-   static Car_model[] Car_models = new Car_model[MAX_USERS]; // 자동차 정보(Car_model 클래스)를 100대 저장할 수 있는 배열을 만듬
-
+   // Car_models는 자동차를 저장할 배열 (자동차 상자 100개)
+   static Car_model[] Car_models = new Car_model[MAX_USERS]; // 
    static int userCount = 0; // 지금까지 등록된 자동차 수를 저장
 
-   // 1. 자동차 추가 기능
+// 1. 자동차 추가 기능
+// public	다른 클래스에서도 사용할 수 있게 공개
+// static	객체 생성 없이 클래스 이름으로 호출 가능
+// void	값을 반환하지 않음 (그냥 실행만 함)
+// updateUser	메서드 이름. 사용자 정보(여기선 자동차 정보)를 수정하는 기능
+// Scanner scanner 키보드 입력을 받을 도구를 매개변수로 받음
    public static void addUser(Scanner scanner) {
-      if (userCount < MAX_USERS) { // 자동차 수가 100보다 작을 때만 등록할 수 있음
+      if (userCount < MAX_USERS) { // 유효성 체크를 하지 않으면 오류가 발생할시 정상 작동 X
+         // userCount < MAX_USERS , 지정해놓은 MAX_USERS에 저장공간이 남았는지 확인
          System.out.println("자동차명을 입력하세요: "); // 사용자에게 자동차명을 입력하라고 요청
          String model = scanner.nextLine(); // 입력받은 자동차명을 변수 model에 저장
 
@@ -42,7 +48,7 @@ public class Car { // Car 클래스
 
    // 2. 등록된 자동차 목록 출력
    public static void viewUsers() {
-      if (userCount == 0) { // 등록된 자동차가 없다면
+      if (userCount == 0) { // 등록된 자동차가 없다면 / == 0 1대도 등록이 안되었을때 참이됨
          System.out.println("등록된 자동차가 없습니다."); // 해당 메시지를 출력하고
          return; // 메서드를 종료
       }

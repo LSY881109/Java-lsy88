@@ -1,0 +1,43 @@
+; 1. 메서드(Method)란?
+
+; 메서드는 어떤 동작이나 기능을 정의한 코드 묶음입니다.
+; 예를 들어, 자동차 등록하기, 정보 보여주기, 
+; 자동차 삭제하기 같은 행동 하나를 코드로 묶어 놓은 게 메서드예요.
+
+; 예시
+; 부분	의미
+; public	어디서든 접근 가능
+; static	객체 없이 클래스 이름으로 호출 가능
+; void	결과값(return)이 없음
+; addUser	메서드 이름. 자동차 한 대를 등록하는 기능
+
+
+; 2. 매개변수(Parameter)란?
+; 메서드가 동작할 때 외부에서 받아오는 정보를 의미합니다.
+
+; 매개변수 예시:
+
+; 예시 aaaaaa(Scanner scanner)
+; updateUser(Scanner scanner)
+; deleteUser(Scanner scanner)
+; searchUser(Scanner scanner)
+
+
+; 3. 배열(Array)이란?
+; 배열은 같은 종류의 데이터를 여러 개 저장할 수 있는 공간입니다.
+; 자동차 100대를 저장하려면 자동차 100개의 공간이 필요하겠죠?
+
+
+; static Car_model[] Car_models = new Car_model[MAX_USERS];
+; 용어	        의미
+; Car_model[]	자동차 객체(Car_model)를 여러 개 저장할 수 있는 배열 선언
+; Car_models	자동차들을 저장하는 배열의 이름
+; MAX_USERS	    최대 100대 저장 가능 (상수)
+
+; 간단 핵심 정리
+; 개념	     뜻	                                        코드 예시
+; 메서드	 기능을 정의한 코드 블록	                public static void addUser(...)
+; 매개변수	 메서드가 외부로부터 받는 값	             Scanner scanner
+; 배열	     같은 타입 데이터를 여러 개 저장하는 공간	  Car_model[] Car_models
+; 객체	     클래스(Car_model)의 실제 데이터	         new Car_model(...)
+; 반복문	 같은 코드를 여러 번 실행	                 for (int i = 0; i < userCount; i++)

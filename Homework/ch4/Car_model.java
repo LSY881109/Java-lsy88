@@ -1,4 +1,4 @@
-package Homework.lsy0605.ch4; // 이 파일이 속한 폴더(패키지)를 정의
+package Homework.ch4; // 이 파일이 속한 폴더(패키지)를 정의
 
 public class Car_model { // 자동차 한 대의 정보를 담는 클래스
 
