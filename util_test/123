@@ -1,0 +1,34 @@
+package ch5_3;
+
+public class PhoneMainEx1_5 {
+    public static void main(String[] args) {
+        IphoeEx1_4 iphone1_4 = new IphoeEx1_4("애플", "아이폰", "200");
+        iphone1_4.showInfo();
+
+        GalaxyEx1_3 galaxyEx1_3 = new GalaxyEx1_3("삼성", "갤럭시", "200");
+        galaxyEx1_3.showInfo();
+
+        PhoneEx1_2 phoneIphone = new IphoeEx1_4("애플", "아이폰", "200");
+        if (phoneIphone instanceof IphoeEx1_4) {
+            IphoeEx1_4 iphoeEx1_4 = (IphoeEx1_4) phoneIphone;
+            System.out.println(" 111");
+            iphoeEx1_4.showInfo(); // Assuming sellInfo() does not exist, use showInfo()
+        } else if (phoneIphone instanceof GalaxyEx1_3) {
+            GalaxyEx1_3 galaxyEx1_32 = (GalaxyEx1_3) phoneIphone;
+            galaxyEx1_32.logoInfo();
+        }
+
+        PhoneEx1_2 samsungPhone = new GalaxyEx1_3("삼성", "갤럭시", "200");
+        samsungPhone.showInfo();
+
+        if (samsungPhone instanceof IphoeEx1_4) {
+            IphoeEx1_4 iphoeEx1_4 = (IphoeEx1_4) samsungPhone;
+            System.out.println("11");
+            iphoeEx1_4.showInfo(); // Assuming sellInfo() does not exist, use showInfo()
+        } else if (samsungPhone instanceof GalaxyEx1_3) {
+            GalaxyEx1_3 galaxyEx1_32 = (GalaxyEx1_3) samsungPhone;
+            galaxyEx1_32.logoInfo();
+        }
+
+    }
+}
