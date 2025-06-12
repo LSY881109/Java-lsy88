@@ -1,6 +1,6 @@
 package d250611.ch8_1;
 
-import d250611.model.Member;
+import d250611.member_project.model.Member;
 
 // import java.lang.reflect.Member; // 주석 처리 또는 삭제
 
