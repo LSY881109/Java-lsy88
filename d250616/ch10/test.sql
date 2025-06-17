@@ -43,4 +43,5 @@ commit;
 
 -- 테이블 조회 
 select *
-  from member501;
+  from member501
+ order by id desc;
